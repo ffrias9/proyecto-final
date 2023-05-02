@@ -1,0 +1,14 @@
+---
+- name: Iniciar y habilitar servicio en RedHat
+  service:
+    name: httpd
+    state: started
+    enabled: yes
+  when: ansible_os_family == RedHat
+
+- name: Iniciar y habilitar servicio en Debian
+  systemd:
+    name: apache2
+    state: started
+    enabled: yes
+  when: ansible_os_family == Debian
