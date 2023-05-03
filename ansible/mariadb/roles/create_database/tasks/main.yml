@@ -3,16 +3,16 @@
       mysql_db:
         name: employees
         login_user: root
-        login_password: toor
+        login_password: "{{ mysql_root_password }}"
         login_host: localhost
         state: present
 
     - name: Crear usuario para la base de datos
       mysql_user:
         login_user: root
-        login_password: toor
+        login_password: "{{ mysql_root_password }}"
         login_host: localhost
-        name: admin
-        password: Passw0rd!
+        name: "{{ new_username }}"
+        password: "{{ new_user_passwd }}"
         priv: 'employees.*:ALL,GRANT'
         state: present
