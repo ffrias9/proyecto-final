@@ -1,0 +1,18 @@
+---
+    - name: Crear base de datos
+      mysql_db:
+        name: employees
+        login_user: root
+        login_password: toor
+        login_host: localhost
+        state: present
+
+    - name: Crear usuario para la base de datos
+      mysql_user:
+        login_user: root
+        login_password: toor
+        login_host: localhost
+        name: admin
+        password: Passw0rd!
+        priv: 'employees.*:ALL,GRANT'
+        state: present

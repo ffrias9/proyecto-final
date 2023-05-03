@@ -1,0 +1,19 @@
+---
+    - name: instalar MariaDB
+      apt:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+        - mariadb-server
+        - python3-pymysql
+        - python3-mysqldb
+        - python-pymysql
+        - python-mysqldb
+      notify: Iniciar MariaDB
+
+    - meta: flush handlers
+      
+    - name: Dar todos los permisos al usuario root
+      shell: mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'toor' WITH GRANT OPTION;"
+      become_user: root
+      ignore_errors: true
