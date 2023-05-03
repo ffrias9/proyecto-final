@@ -3,3 +3,4 @@
   package:
     name: httpd
     state: present
+  notify: Iniciar y habilitar servicio en RedHat
