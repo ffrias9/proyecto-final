@@ -1,0 +1,17 @@
+[all]
+192.168.10.11
+192.168.10.12
+
+[all:vars]
+min_gb=0.5
+
+[servidor1]
+192.168.10.11
+[servidor1:vars]
+min_gb=0.3
+min_gb_per_volume={'/': 150,'/dev': 1}
+
+[servidor2]
+192.168.10.12
+[servidor2:vars]
+min_gb_per_volume={'/': 200}
