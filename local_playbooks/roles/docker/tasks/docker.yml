@@ -3,7 +3,6 @@
   yum:
     name: "{{ item }}"
     state: present
-    autoremove: true
   with_items:
     - docker-ce
     - docker-ce-cli

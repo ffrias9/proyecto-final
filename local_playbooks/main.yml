@@ -1,5 +1,5 @@
-- hotsts: localhost
+---
+- hosts: localhost
   become: true
-  tasks:
-
-    role: docker
+  roles:
+     - role: docker
