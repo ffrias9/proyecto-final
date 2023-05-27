@@ -14,7 +14,7 @@
 
 - name: Change owner and permissions
   file:
-    file: "/var/www/nextcloud-{{ nextcloud_version }}.zip"
+    path: "/var/www/nextcloud-{{ nextcloud_version }}.zip"
     owner: apache
     group: apache
     mode: 0755
@@ -22,7 +22,7 @@
 
 - name: Create data directory
   file:
-    file: /var/nextcloud/data
+    path: /var/nextcloud/data
     state: directory
     owner: apache
     group: apache
