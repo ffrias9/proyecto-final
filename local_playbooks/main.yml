@@ -1,0 +1,5 @@
+- hotsts: localhost
+  become: true
+  tasks:
+
+    role: docker
