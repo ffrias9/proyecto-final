@@ -1,0 +1,6 @@
+---
+nextcloud_version: "18.0.1"
+root_passwd: "toor"
+new_db_user: "nextcloud"
+new_db_user_host: "%"
+new_db_user_passwd: 12345

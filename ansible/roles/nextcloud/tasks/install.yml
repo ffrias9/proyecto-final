@@ -1,0 +1,36 @@
+---
+- name: Download Nextcloud
+  get_url:
+    url: "https://download.nextcloud.com/server/releases/nextcloud-{{ nextcloud_version }}.zip"
+    dest: /tmp
+  register: result
+  retries: 5
+  until: result is success
+
+- name: Unzip file
+  unarchive:
+    src: "/tmp/nextcloud-{{ nextcloud_version }}.zip"
+    dest: /var/www
+
+- name: Change owner and permissions
+  file:
+    file: "/var/www/nextcloud-{{ nextcloud_version }}.zip"
+    owner: apache
+    group: apache
+    mode: 0755
+    recurse: true
+
+- name: Create data directory
+  file:
+    file: /var/nextcloud/data
+    state: directory
+    owner: apache
+    group: apache
+    mode: 0755
+    recurse: true
+
+- name: Configure Apache
+  copy:
+    src: nextcloud.conf
+    dest: /etc/httpd/conf.d
+  notify: Restart Apache
