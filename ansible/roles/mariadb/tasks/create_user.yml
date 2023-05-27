@@ -1,0 +1,9 @@
+---
+- name: Create new user
+  mysql_user:
+    login_user: root
+    login_password: "{{ root_psswd }}"
+    user: "{{ new_user }}"
+    password: "{{ new_user_password }}"
+    host: "{{ new_user_host }}"
+    state: present

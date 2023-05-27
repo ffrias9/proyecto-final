@@ -1,0 +1,7 @@
+---
+- name: Enable remote access
+  replace:
+    path: /etc/my.cnf.d/mariadb-server.cnf
+    regexp: "#bind-address=0.0.0.0"
+    replace: "bind-address=0.0.0.0"
+  notify: Restart MariaDB service

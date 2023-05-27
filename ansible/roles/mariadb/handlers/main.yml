@@ -1,0 +1,24 @@
+---
+- name: Start MariaDB service
+  systemd:
+    name: mariadb
+    state: started
+    enabled: True
+
+- name: Restart MariaDB service
+  systemd:
+    name: mariadb
+    state: restarted
+
+- name: Start ufw MariaDB
+  service:
+    name: ufw
+    state: started
+
+- name: Enable ufw MariaDB
+  ufw:
+    state: enabled
+
+- name: Reload ufw MariaDB
+  ufw:
+    state: reloaded
