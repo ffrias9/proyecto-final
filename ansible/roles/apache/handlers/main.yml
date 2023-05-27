@@ -5,9 +5,20 @@
     state: started
     enabled: True
 
+- name: Start and enable httpd
+  systemd:
+    name: httpd
+    state: started
+    enabled: True
+
 - name: Reload apache2
   systemd:
     name: apache2
+    state: reloaded
+
+- name: Reload httpd
+  systemd:
+    name: httpd
     state: reloaded
 
 - name: Start ufw Debian
