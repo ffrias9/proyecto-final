@@ -1,0 +1,25 @@
+---
+- name: Install Docker
+  yum:
+    name: "{{ item }}"
+    state: present
+    autoremove: true
+  with_items:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+  register: result
+  retries: 5
+  until: result is success
+  notify: Start and enable Docker
+
+- name: Create group docker
+  group:
+    name: docker
+    state: present
+
+- name: Add user to docker group
+  user:
+    name: "{{ docker_user }}"
+    groups: docker
+    append: true
