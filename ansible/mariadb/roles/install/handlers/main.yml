@@ -1,6 +1,0 @@
----
-    - name: Iniciar MariaDB
-      service:
-        name: mariadb
-        enabled: true
-        state: started
