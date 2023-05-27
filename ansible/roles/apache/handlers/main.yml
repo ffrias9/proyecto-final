@@ -1,0 +1,24 @@
+---
+- name: Start and enable apache2
+  systemd:
+    name: apache2
+    state: started
+    enabled: True
+
+- name: Reload apache2
+  systemd:
+    name: apache2
+    state: reloaded
+
+- name: Start ufw Debian
+  service:
+    name: ufw
+    state: started
+
+- name: Enable ufw Debian
+  ufw:
+    state: enabled
+
+- name: Reload ufw Debian
+  ufw:
+    state: reloaded
