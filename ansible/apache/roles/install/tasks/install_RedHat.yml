@@ -1,5 +1,0 @@
----
-- name: Instalar httpd
-  package:
-    name: httpd
-    state: present
