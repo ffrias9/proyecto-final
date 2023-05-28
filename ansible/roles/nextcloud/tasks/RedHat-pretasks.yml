@@ -1,0 +1,33 @@
+---
+- name: Disable SELinux
+  lineinfile:
+    path: /etc/selinux/config
+    regexp: SELINUX=
+    line: SELINUX=disabled
+
+- name: Install PHP dependencies
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - php
+    - php-gd
+    - php-curl
+    - php-zip
+    - php-dom
+    - php-xml
+    - php-simplexml
+    - php-mbstring
+    - php-intl
+    - php-json
+  register: result
+  retries: 5
+  until: result is success
+
+- name: Install zip
+  yum:
+    name: zip
+    state: present
+  register: result
+  retries: 5
+  until: result is success

@@ -1,0 +1,26 @@
+---
+- name: Download Nextcloud
+  get_url:
+    url: "https://download.nextcloud.com/server/releases/nextcloud-{{ nextcloud_version }}.zip"
+    dest: /tmp
+  register: result
+  retries: 5
+  until: result is success
+
+- name: Unzip file
+  unarchive:
+    src: "/tmp/nextcloud-{{ nextcloud_version }}.zip"
+    dest: /var/www/html
+
+- name: Change owner
+  file:
+    path: "/var/www/html/nextcloud"
+    owner: www-data
+    group: www-data
+    recurse: true
+
+- name: Change directory permissions
+  shell: "find /var/www/html -type d -exec chmod 755 {} \;"
+
+- name: Change file permissions
+  shell: "find /var/www/html -type f -exec chmod 644 {} \;"
