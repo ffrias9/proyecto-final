@@ -1,0 +1,33 @@
+---
+- name: Delete firewalld if it is install
+  apt:
+    name: firewalld
+    state: absent
+
+- name: install ufw
+  apt:
+    name: ufw
+    state: present
+  retries: 5
+  delay: 5
+  notify: Start ufw Debian
+
+
+- name: Allow ssh service
+  ufw:
+    rule: allow
+    name: ssh
+  notify:
+    - Enable ufw Debian
+    - Reload ufw Debian
+
+- name: Allow apache service
+  ufw:
+    rule: allow
+    port: 8080
+    proto: tcp
+  notify:
+    - Enable ufw Debian
+    - Reload ufw Debian
+
+- meta: flush_handlers
