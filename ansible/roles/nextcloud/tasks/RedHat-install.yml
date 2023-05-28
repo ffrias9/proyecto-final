@@ -10,11 +10,11 @@
 - name: Unzip file
   unarchive:
     src: "/tmp/nextcloud-{{ nextcloud_version }}.zip"
-    dest: /var/www
+    dest: /var/www/html
 
 - name: Change owner and permissions
   file:
-    path: "/var/www/nextcloud-{{ nextcloud_version }}.zip"
+    path: "/var/www/html/nextcloud"
     owner: apache
     group: apache
     mode: 0755
@@ -22,7 +22,7 @@
 
 - name: Create data directory
   file:
-    path: /var/nextcloud/data
+    path: /var/www/html/nextcloud/data
     state: directory
     owner: apache
     group: apache
