@@ -1,0 +1,13 @@
+---
+
+- name: Check OS family
+  debug:
+    msg: "ERROR: THE OS_FAMILY MUST BE DEBIAN OR REDHAT"
+  failed_when: (ansible_os_family != "RedHat") and (ansible_os_family != "Debian")
+  when: (ansible_os_family != "RedHat") and (ansible_os_family != "Debian")
+  any_errors_fatal: True
+
+- name: OS family Ok
+  debug:
+    msg: "Ok"
+  when: (ansible_os_family == "RedHat") or (ansible_os_family == "Debian")

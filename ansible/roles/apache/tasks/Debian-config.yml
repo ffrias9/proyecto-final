@@ -1,8 +1,0 @@
----
-- name: Change Apache listen port
-  lineinfile:
-    path: /etc/apache2/ports.conf
-    regexp: "^Listen "
-    insertafter: "^#Listen "
-    line: Listen 8080
-  notify: Reload apache2
