@@ -1,0 +1,10 @@
+---
+- name: Set var with actual datetime
+  set_fact:
+    datetime: "{{ ansible_date_time.date }}_{{ ansible_date_time.time }}"
+
+- name: Backup database
+  mysql_db:
+    state: dump
+    name: "{{ databases_bkup }}"
+    target: "/tmp/{{ date }}-dump.sql"

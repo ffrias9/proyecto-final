@@ -1,0 +1,7 @@
+---
+- name: Restore database
+  mysql_db:
+    state: import
+    name: "{{ databases_rstre }}"
+    target: "{{ bckup_path }}"
+    force: true
