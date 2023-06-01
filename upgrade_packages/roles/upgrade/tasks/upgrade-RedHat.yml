@@ -1,0 +1,27 @@
+---
+- name: Create list
+  set_fact:
+    list: "{{ rh_pkgs.split(',') }}"
+  when: rh_pkgs | default("null", false)
+
+- name: RedHat - Install dnf
+  yum:
+    name: dnf
+    state: latest
+
+- name: RedHat - Enable EPEL repository
+  dnf:
+    name: epel-release
+    state: latest
+
+- name: RedHat - Upgrade all packages, excluding those indicated
+  yum:
+    name: "*"
+    state: latest
+    exclude:
+      - "{{ list }}*"
+
+- debug:
+    msg: "{{ item }} not upgraded"
+  with_items: "{{ list }}"
+  when: rh_pkgs | default("null", false)

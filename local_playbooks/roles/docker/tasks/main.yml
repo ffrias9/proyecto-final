@@ -1,0 +1,6 @@
+---
+- include_tasks: pretasks.yml
+
+- include_tasks: docker.yml
+
+- include_tasks: docker-compose.yml

@@ -1,0 +1,36 @@
+---
+- name: Check available storage
+  hosts: all
+  become: true
+  
+  tasks:
+    - name: Execute command df
+      shell: df -hm | awk '{printf "%s -> %.3f\n", $6, $4/1024}'
+      register: df_output
+
+    - name: Save the obtained values in a new dictionary
+      set_fact:
+        df_values: "{{ df_values | default({}) | combine({ volume: avail }) }}"
+      vars:
+        volume: "{{ item.split()[0] }}"
+        avail: "{{ item.split()[-1] }}"
+      with_items: "{{ df_output.stdout_lines[1:] }}"
+
+    - name: Check the available storage of volumes that have been given a specific minimum amount of GB
+      debug:
+        msg: "ADVERTENCIA! El volumen {{ item.key }} del host {{ inventory_hostname }} tiene {{ item.value }}GB disponibles. El límite establecido para este volumen es de {{ min_gb_per_volume.get(item.key) }}GB"
+      loop: "{{ df_values | dict2items }}"
+      when: (item.key in min_gb_per_volume.keys()) and (item.value | float) < (min_gb_per_volume.get(item.key)) and min_gb_per_volume is defined
+
+    - name: Remove previously displayed values from dictionary
+      set_fact:
+        df_values: '{{ df_values | dict2items | rejectattr("key", "eq", (item)) | list | items2dict }}'
+      with_items:
+        - "{{ min_gb_per_volume.keys() }}"
+      when: min_gb_per_volume is defined
+
+    - name: Check the available storage of the rest of the volumes
+      debug:
+        msg: "ADVERTENCIA! El volumen {{ item.key }} del host {{ inventory_hostname }} tiene {{ item.value }}GB disponibles. El límite establecido para este volumen es de {{ min_gb }}GB"
+      loop: "{{ df_values | dict2items }}"
+      when: (item.value | float) < (min_gb | float)

@@ -1,0 +1,39 @@
+---
+- name: Update packages
+  yum:
+    name: "*"
+    state: latest
+  register: result
+  retries: 5
+  until: result is success
+
+- name: Add Docker repo
+  get_url:
+    url: https://download.docker.com/linux/centos/docker-ce.repo
+    dest: /etc/yum.repos.d/
+  register: result
+  retries: 5
+  until: result is success
+
+- name: Update cache
+  yum:
+    update_cache: true
+  register: result
+  retries: 5
+  until: result is success
+
+- name: Uninstall all older versions of Docker
+  yum:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - docker
+    - docker-client
+    - docker-client-latest
+    - docker-common
+    - docker-latest
+    - docker-latest-logrotate
+    - docker-logrotate
+    - docker-engine
+    - podman
+    - runc

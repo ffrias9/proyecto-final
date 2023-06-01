@@ -1,0 +1,15 @@
+---
+- name: Create database
+  mysql_db:
+    login_user: root
+    login_password: "{{ root_psswd }}"
+    db: "{{ new_database }}"
+    state: present
+
+- name: Grant privileges on DB to user
+  mysql_user:
+    login_user: root
+    login_password: "{{ root_psswd }}"
+    name: "{{ new_user }}"
+    host: "{{ new_user_host }}"
+    priv: "{{ new_database }}.*:ALL,GRANT"

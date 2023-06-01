@@ -1,0 +1,12 @@
+---
+- include_tasks: "{{ansible_os_family }}-pretasks.yml"
+
+- include_tasks: mysql_sercure_installation.yml
+
+- include_tasks: create_user.yml
+
+- include_tasks: create_database.yml
+
+- include_tasks: "{{ansible_os_family }}-enable_remote_access.yml"
+        
+- include_tasks: "{{ansible_os_family }}-firewall.yml"

@@ -1,0 +1,6 @@
+---
+- include_tasks: "{{ ansible_os_family }}-pretasks.yml"
+
+- include_tasks: "{{ ansible_os_family }}install.yml"
+
+- include_tasks: mysql.yml

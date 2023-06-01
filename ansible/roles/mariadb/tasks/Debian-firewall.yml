@@ -1,0 +1,32 @@
+---
+- name: Delete firewalld if it is install
+  apt:
+    name: firewalld
+    state: absent
+
+- name: install ufw
+  apt:
+    name: ufw
+    state: present
+  retries: 5
+  delay: 5
+  notify: Start ufw MariaDB
+
+- name: Allow ssh service
+  ufw:
+    rule: allow
+    name: ssh
+  notify:
+    - Enable ufw MariaDB
+    - Reload ufw MariaDB
+
+- name: Allow MariaDB service
+  ufw:
+    rule: allow
+    port: 3306
+    proto: tcp
+  notify:
+    - Enable ufw MariaDB
+    - Reload ufw MariaDB
+
+- meta: flush_handlers

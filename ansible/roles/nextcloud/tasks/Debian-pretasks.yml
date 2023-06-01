@@ -1,0 +1,24 @@
+---
+- name: Update and upgrade packages
+  apt:
+   update_cache: yes
+   upgrade: yes
+
+- name: Install dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - php-bcmath
+    - php-curl
+    - php-gd
+    - php-gmp
+    - php-imagick
+    - php-intl
+    - php-mbstring
+    - php-xml
+    - php-zip
+    - php-acpu
+  register: result
+  retries: 5
+  until: result is success
