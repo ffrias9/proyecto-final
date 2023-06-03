@@ -9,3 +9,5 @@ DATABASES = {
         'PORT': "5432",
     }
 }
+
+BROADCAST_WEBSOCKET_SECRET =
