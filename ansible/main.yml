@@ -1,0 +1,12 @@
+---
+- hosts: apache
+  become: true
+  roles:
+    - role: mariadb
+      when: inventory_hostname in groups['mariadb']
+
+    - role: apache
+      when: inventory_hostname in groups['apache']
+
+    - role: nextcloud
+      when: inventory_hostname in groups['apache']
