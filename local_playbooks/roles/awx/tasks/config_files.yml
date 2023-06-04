@@ -50,6 +50,6 @@
 
 - name: Modify SECRET_KEY file
   lineinfile:
-    path: "~/{{ user }}/.awx/awxcompose/SECRET_KEY"
+    path: "~/.awx/awxcompose/SECRET_KEY"
     line: "{{ secret_key }}"
     state: present
