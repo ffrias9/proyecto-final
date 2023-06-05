@@ -8,6 +8,13 @@
   retries: 5
   until: result is success
 
+- name: Install Docker-Compose
+  pip:
+    name: docker-compose
+    executable: pip3
+    extra_args: --user
+  become: false
+
 - name: Place completion script
   uri:
     url: https://raw.githubusercontent.com/docker/compose/master/contrib/completion/bash/docker-compose
@@ -27,4 +34,3 @@
   group:
     name: docker
     state: present
-
