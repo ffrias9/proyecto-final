@@ -19,5 +19,14 @@
   wait_for:
     timeout: 10
 
+- name: Start the containers
+  docker_compose:
+    project_src: "~/.awx/awxcompose"
+    restarted: true
+
+- name: Wait for next task
+  wait_for:
+    timeout: 10
+
 - name: Create Preload data
   command: docker exec awx_task bash -c "/usr/bin/awx-manage create_preload_data"
