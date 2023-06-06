@@ -30,3 +30,4 @@
 
 - name: Create Preload data
   command: docker exec awx_task bash -c "/usr/bin/awx-manage create_preload_data"
+  ignore_errors: true
