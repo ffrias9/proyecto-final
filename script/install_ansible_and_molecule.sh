@@ -10,16 +10,16 @@ read -p "Do you want to continue? (y/n): " yesornot
 
 if [[ "$yesornot" == "y" ]]; then
 	echo "Remove Ansible if is it install..."
-#	python3 -m pip uninstall ansible -y > /dev/null
+	python3 -m pip uninstall ansible -y > /dev/null
 
 	echo "Removing old versions of Python..."
-#	sudo yum remove python3 python36 ansible -y > /dev/null
+	sudo yum remove python3 python36 ansible -y > /dev/null
 
 	echo "Installing Python3.9 and pip..."
-#	sudo yum install python39 python39-pip -y > /dev/null
+	sudo yum install python39 python39-pip -y > /dev/null
 
 	echo "Installing Ansible..."
-#	python3 -m pip install ansible --user > /dev/null
+	python3 -m pip install ansible --user > /dev/null
 
 	echo "Installing Molecule-3.4..."
 	pip3 install molecule==3.4.0 > /dev/null
