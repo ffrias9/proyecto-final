@@ -5,6 +5,8 @@
 
 - name: Backup database
   mysql_db:
+    login_user: "{{ backup_user }}"
+    login_password: "{{ backup_password }}"
     state: dump
     name: "{{ databases_bkup }}"
-    target: "/tmp/{{ date }}-dump.sql"
+    target: "/tmp/{{ datetime }}-dump.sql"

@@ -1,2 +1,4 @@
 ---
 databases_bkup: "all"
+backup_password: "root"
+backup_password: "toor"
