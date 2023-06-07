@@ -1,4 +1,5 @@
 ---
 databases_bkup: "all"
-backup_password: "root"
+backup_user: "root"
 backup_password: "toor"
+backup_path: "/tmp"
