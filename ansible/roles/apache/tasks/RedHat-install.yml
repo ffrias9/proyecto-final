@@ -4,26 +4,30 @@
     name: '*'
     state: latest
   retries: 5
-  delay: 5
+  until: result is success
+  notify: Start ufw Debian
 
 - name: Install dnf
   yum:
     name: dnf
     state: latest
   retries: 5
-  delay: 5
+  until: result is success
+  notify: Start ufw Debian
 
 - name: Enable EPEL repository
   dnf:
     name: epel-release
     state: latest
   retries: 5
-  delay: 5
+  until: result is success
+  notify: Start ufw Debian
 
 - name: Install packages
   dnf:
     name: httpd
     state: present
-  notify: Start and enable httpd
   retries: 5
-  delay: 5
+  until: result is success
+  notify: Start ufw Debian
+  notify: Start and enable httpd

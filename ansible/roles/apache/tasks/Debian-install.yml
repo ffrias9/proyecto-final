@@ -3,8 +3,9 @@
   apt:
     update_cache: yes
     upgrade: yes
+  register: result
   retries: 5
-  delay: 5
+  until: result is success
 
 - name: Install packages
   apt:
@@ -20,6 +21,7 @@
     - php-imagick
     - php-gd
     - php-mysql
-  notify: Start and enable apache2
+  register: result
   retries: 5
-  delay: 5
+  until: result is success
+  notify: Start and enable apache2

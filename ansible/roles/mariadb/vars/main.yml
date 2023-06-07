@@ -1,6 +1,6 @@
 ---
 root_psswd: "toor"
-new_user: "wordpress"
-new_user_password: "Passw0rd!"
+new_user: "nextcloud"
+new_user_password: "nextcloud"
 new_user_host: "%"
-new_database: "wordpress"
+new_database: "nextcloud"

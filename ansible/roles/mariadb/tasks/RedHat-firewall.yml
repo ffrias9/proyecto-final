@@ -8,9 +8,12 @@
   dnf:
     name: ufw
     state: present
+  register: result
   retries: 5
-  delay: 5
+  until: result is success
   notify: Start ufw MariaDB
+
+- meta: flush_handlers
 
 - name: Allow ssh service
   ufw:
@@ -19,6 +22,8 @@
   notify:
     - Enable ufw MariaDB
     - Reload ufw MariaDB
+
+- meta: flush_handlers
 
 - name: Allow MariaDB service
   ufw:

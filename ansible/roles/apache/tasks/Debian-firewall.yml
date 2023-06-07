@@ -8,8 +8,9 @@
   apt:
     name: ufw
     state: present
+  register: result
   retries: 5
-  delay: 5
+  until: result is success
   notify: Start ufw Debian
 
 

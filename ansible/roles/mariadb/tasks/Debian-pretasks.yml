@@ -3,8 +3,9 @@
   apt:
     update_cache: yes
     upgrade: yes
+  register: result
   retries: 5
-  delay: 5
+  until: result is success
 
 - name: Install packages
   apt:
@@ -14,8 +15,9 @@
     - mariadb-client
     - mariadb-server
     - python3-mysqldb
-  notify: Start MariaDB service
+  register: result
   retries: 5
-  delay: 5
+  until: result is success
+  notify: Start MariaDB service
 
 - meta: flush_handlers
