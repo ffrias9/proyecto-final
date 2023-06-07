@@ -4,3 +4,4 @@
 - include_tasks: "{{ ansible_os_family }}install.yml"
 
 - include_tasks: mysql.yml
+  when: mysql_rol is defined and mysql_rol == "y"

@@ -20,7 +20,7 @@
     recurse: true
 
 - name: Change directory permissions
-  shell: "find /var/www/html -type d -exec chmod 755 {} \;"
+  command: find /var/www/html -type d -exec chmod 755 {} \;
 
 - name: Change file permissions
-  shell: "find /var/www/html -type f -exec chmod 644 {} \;"
+  command: find /var/www/html -type f -exec chmod 644 {} \;
