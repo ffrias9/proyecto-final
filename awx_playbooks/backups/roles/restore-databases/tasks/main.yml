@@ -1,5 +1,9 @@
 ---
-- include_tasks: latest_backup.yml
+- include_tasks: mount_nfs.yml
+
+- include_tasks: find_latest_backup.yml
   when: latest_backup is defined and latest_backup == "yes"
 
-- include_tasks: restore.yml
+- include_tasks: db_restore.yml
+
+- include_tasks: unmount_nfs.yml

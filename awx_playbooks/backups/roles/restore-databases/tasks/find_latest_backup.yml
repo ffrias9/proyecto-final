@@ -1,7 +1,7 @@
 ---
 - name: Find backup files
   find:
-    path: "{{ backup_path }}"
+    path: "{{ backup_dir }}"
   register: found_files
 
 - name: Find latest backup

@@ -1,2 +1,6 @@
 ---
 - include_tasks: mount_nfs.yml
+
+- include_tasks: db_backup.yml
+
+- include_tasks: unmount_nfs.yml

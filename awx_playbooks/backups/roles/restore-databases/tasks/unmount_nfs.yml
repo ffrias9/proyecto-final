@@ -1,0 +1,5 @@
+---
+- name: Unmount NFS volume
+  mount:
+    path: "{{ backup_dir }}"
+    state: unmounted
