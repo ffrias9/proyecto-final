@@ -4,5 +4,6 @@ root_passwd: "toor"
 new_db_user: "nextcloud"
 new_db_user_host: "%"
 new_db_user_passwd: 12345
+new_db: "nextcloud"
 mysql_server: "192.168.10.11"
 #mysql_rol: "n"
