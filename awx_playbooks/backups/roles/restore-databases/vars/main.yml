@@ -1,3 +1,4 @@
 ---
-databases_rstre: "all"
+which_database: "all"
 bckup_path: "/tmp/22/05/2023_19:43-dump.sql"
+# db_latest: no

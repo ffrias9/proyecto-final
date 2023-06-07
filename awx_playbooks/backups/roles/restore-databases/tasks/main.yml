@@ -1,7 +1,5 @@
 ---
-- name: Restore database
-  mysql_db:
-    state: import
-    name: "{{ databases_rstre }}"
-    target: "{{ bckup_path }}"
-    force: true
+- include_tasks: latest_backup.yml
+  when: db_latest is defined and db_latest == "y"
+
+- include_tasks: restore.yml
