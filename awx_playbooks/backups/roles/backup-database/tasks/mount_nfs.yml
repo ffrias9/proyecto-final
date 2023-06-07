@@ -1,0 +1,19 @@
+---
+- name: Create dir for db backups
+  file:
+    path: "{{ backup_dir }}"
+    state: directory
+
+- name: Mount NFS volume in backups path
+  mount:
+    src: "{{ nfs_src }}"
+    path: "{{ backup_dir }}"
+    state: mounted
+    fstype: nfs
+
+- include_tasks: db_backup.yml
+
+- name: Umount NFS volume
+  mount:
+    path: "{{ backup_dir }}"
+    state: unmounted
