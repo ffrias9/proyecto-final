@@ -1,5 +1,6 @@
 ---
-databases_bkup: "all"
+databases_to_backup: "all"
 backup_user: "root"
 backup_password: "toor"
-backup_path: "/tmp"
+backup_dir: "/db_backups"
+nfs_src: "192.168.10.100:/mnt/db_backups/dbackup"
