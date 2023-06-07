@@ -1,5 +1,5 @@
 ---
 - include_tasks: latest_backup.yml
-  when: db_latest is defined and db_latest == "y"
+  when: latest_backup is defined and latest_backup == "yes"
 
 - include_tasks: restore.yml

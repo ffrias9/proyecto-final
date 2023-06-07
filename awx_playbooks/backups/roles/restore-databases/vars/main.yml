@@ -1,6 +1,6 @@
 ---
 which_database: "nextcloud"
-bckup_path: "/tmp/"
-db_latest: "y"
+backup_path: "/tmp"
+latest_backup: "yes"
 restore_user: "root"
 restore_password: "toor"

@@ -5,5 +5,5 @@
     login_password: "{{ restore_password }}"
     state: import
     name: "{{ which_database }}"
-    target: "{{ bckup_path }}"
+    target: "{{ backup_file }}"
     force: true

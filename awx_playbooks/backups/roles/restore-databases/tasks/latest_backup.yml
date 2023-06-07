@@ -1,13 +1,13 @@
 ---
 - name: Find backup files
   find:
-    path: "{{ bckup_path }}"
+    path: "{{ backup_path }}"
   register: found_files
 
 - name: Find latest backup
   set_fact:
-    bckup_path: "{{ found_files.files | sort(attribute='mtime',reverse=true) | first }}"
+    backup_file: "{{ found_files.files | sort(attribute='mtime',reverse=true) | first }}"
 
 - name: Get file path
   set_fact:
-    bckup_path: "{{ bckup_path.path }}"
+    backup_file: "{{ backup_file.path }}"
