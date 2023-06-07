@@ -15,7 +15,7 @@ Vagrant.configure("2") do |config|
         v.customize ["modifyvm", :id, "--cpus", 1]
     end
 
-    apache.vm.provision "shell", path: "./slave.sh"
+    apache.vm.provision "shell", path: "./redhat.sh"
     end
   #--------------------------------------------------------------------------------------
   config.vm.define "mariadb" do |mariadb|
@@ -30,7 +30,7 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--cpus", 1]
   end
 
-  mariadb.vm.provision "shell", path: "./slave.sh"
+  mariadb.vm.provision "shell", path: "./debian.sh"
   end
   #--------------------------------------------------------------------------------------
 end
