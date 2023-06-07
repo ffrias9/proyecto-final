@@ -11,6 +11,7 @@
   unarchive:
     src: "/tmp/nextcloud-{{ nextcloud_version }}.zip"
     dest: /var/www/html
+    remote_src: true
 
 - name: Change owner
   file:
@@ -20,7 +21,7 @@
     recurse: true
 
 - name: Change directory permissions
-  command: find /var/www/html -type d -exec chmod 755 {} \;
+  command: find /var/www/html -type d -exec chmod 0755 {} \;
 
 - name: Change file permissions
-  command: find /var/www/html -type f -exec chmod 644 {} \;
+  command: find /var/www/html -type f -exec chmod 0644 {} \;
