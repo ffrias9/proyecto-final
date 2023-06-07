@@ -1,6 +1,8 @@
 ---
 - name: Restore database
   mysql_db:
+    login_user: "{{ restore_user }}"
+    login_password: "{{ restore_password }}"
     state: import
     name: "{{ which_database }}"
     target: "{{ bckup_path }}"

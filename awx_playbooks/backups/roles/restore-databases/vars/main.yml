@@ -1,4 +1,6 @@
 ---
-which_database: "all"
-bckup_path: "/tmp/22/05/2023_19:43-dump.sql"
-# db_latest: no
+which_database: "nextcloud"
+bckup_path: "/tmp/"
+db_latest: "y"
+restore_user: "root"
+restore_password: "toor"
