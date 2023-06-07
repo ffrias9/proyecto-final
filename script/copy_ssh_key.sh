@@ -43,11 +43,11 @@ if [[ "$yesornot" == "y" ]]; then
 	fi
 
 	# Leemos el archivo CSV línea por línea
-	while read -r linea
+	while read -r line;
 	do
-		username=$(awk -F: {'print $1'})
-		ip=$(awk -F: {'print $2'})
-		password=$(awk -F: {'print $3'})
+		username=$(echo "$line" | awk -F, {'print $1'})
+		ip=$(echo "$line" | awk -F, {'print $2'})
+		password=$(echo "$line" | awk -F, {'print $3'})
 
 		# Compartimos la clave SSH
 		echo "Compartiendo clave ssh con $username@$ip..."
