@@ -22,7 +22,12 @@
         msg: "ADVERTENCIA! El volumen {{ item.key }} del host {{ inventory_hostname }} tiene {{ item.value }}GB disponibles. El límite establecido para este volumen es de {{ min_gb_per_volume.get(item.key) }}GB"
       loop: "{{ df_values | dict2items }}"
       register: result
-      when: (item.key in min_gb_per_volume.keys()) and (item.value | float) < (min_gb_per_volume.get(item.key)) and min_gb_per_volume is defined and result is success
+        when:
+          - min_gb_per_volume is defined
+          - item.key in min_gb_per_volume.keys()
+          - item.value | float < min_gb_per_volume.get(item.key, 0.0)
+          - result is success
+      #when: (item.key in min_gb_per_volume.keys()) and (item.value | float) < (min_gb_per_volume.get(item.key)) and min_gb_per_volume is defined and result is success
 
     - name: Remove previously displayed values from dictionary
       set_fact:
