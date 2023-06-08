@@ -3,8 +3,6 @@
   become: True
 
   roles:
-    - role: check_OS
-
     - role: upgrade
 
     - role: reboot
