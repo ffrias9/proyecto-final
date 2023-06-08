@@ -1,12 +1,3 @@
-sudo sed -i -e "s|mirrorlist=|#mirrorlist=|g" /etc/yum.repos.d/CentOS-*
-sudo sed -i -e "s|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g" /etc/yum.repos.d/CentOS-*
-
-sudo dnf clean all
-sudo dnf -y swap centos-linux-repos centos-stream-repos
-
-sudo dnf -y update && sudo dnf -y upgrade
-
-sudo dnf makecache
 sudo dnf -y install epel-release
 sudo dnf makecache
 sudo dnf -y install vim
