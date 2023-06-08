@@ -9,4 +9,4 @@
     login_password: "{{ backup_password }}"
     state: dump
     name: "{{ databases_to_backup }}"
-    target: "{{ backup_dir }}/{{ datetime }}-{{ databases_bkup }}.sql"
+    target: "{{ backup_dir }}/{{ datetime }}-{{ databases_to_backup }}.sql"
