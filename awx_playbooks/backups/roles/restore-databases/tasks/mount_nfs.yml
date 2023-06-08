@@ -1,4 +1,9 @@
 ---
+- name: Install required package
+  yum:
+    name: nfs-utils
+    state: present
+
 - name: Create dir for db backups
   file:
     path: "{{ backup_dir }}"
