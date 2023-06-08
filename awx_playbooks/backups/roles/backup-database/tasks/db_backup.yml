@@ -4,6 +4,7 @@
     datetime: "{{ ansible_date_time.date }}_{{ ansible_date_time.time }}"
 
 - name: Backup database
+  become: false
   mysql_db:
     login_user: "{{ backup_user }}"
     login_password: "{{ backup_password }}"
