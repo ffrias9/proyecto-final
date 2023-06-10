@@ -20,8 +20,8 @@
     rule: allow
     name: ssh
   notify:
-    - Enable ufw Debian
-    - Reload ufw Debian
+    - Enable ufw Redhat
+    - Reload ufw Redhat
 
 - name: Allow apache service
   ufw:
@@ -29,7 +29,7 @@
     port: 8080
     proto: tcp
   notify:
-    - Enable ufw Debian
-    - Reload ufw Debian
+    - Enable ufw Redhat
+    - Reload ufw Redhat
 
 - meta: flush_handlers

@@ -33,3 +33,16 @@
 - name: Reload ufw Debian
   ufw:
     state: reloaded
+
+- name: Start ufw Redhat
+  service:
+    name: ufw
+    state: started
+
+- name: Enable ufw Redhat
+  ufw:
+    state: enabled
+
+- name: Reload ufw Redhat
+  ufw:
+    state: reloaded
