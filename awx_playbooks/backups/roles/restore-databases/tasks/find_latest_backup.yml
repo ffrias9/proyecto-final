@@ -6,8 +6,8 @@
 
 - name: Find latest backup
   set_fact:
-    backup_file: "{{ found_files.files | sort(attribute='mtime',reverse=true) | first }}"
+    backup_file: "{{ found_files.files | sort(attribute='mtime',reverse=true) }}"
 
 - name: Get file path
   set_fact:
-    backup_file: "{{ backup_file.path }}"
+    backup_file: "{{ backup_file }}"
