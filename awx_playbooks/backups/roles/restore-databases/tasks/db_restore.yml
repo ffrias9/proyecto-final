@@ -6,4 +6,3 @@
     state: import
     name: "{{ which_database }}"
     target: "{{ backup_file }}"
-    force: true
