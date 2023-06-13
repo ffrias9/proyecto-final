@@ -10,4 +10,4 @@
 
 - name: Get file path
   set_fact:
-    backup_file: "{{ backup_file }}"
+    backup_file: "{{ backup_file.path }}"
